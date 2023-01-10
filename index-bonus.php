@@ -29,6 +29,11 @@
             box-shadow: 5px 1px 10px #000;
         }
 
+        main {
+            background-color: bisque;
+            height: 100vh;
+        }
+
         .title {
             text-transform: capitalize;
             line-height: 150px;
@@ -36,9 +41,17 @@
             color: lightyellow;
         }
 
-        main {
-            background-color: bisque;
-            height: 100vh;
+        label {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+        #parkslot {
+            margin-right: 20px;
+        }
+
+        #filter {
+            margin: auto 10px;
         }
 
         .card {
@@ -73,6 +86,7 @@
         .card h3:hover {
             color: coral;
             transform: scale(1.1);
+            cursor: pointer;
         }
     </style>
     <?php
@@ -127,6 +141,15 @@
     <main>
 
         <section class="container">
+            <div class="row justify-content-center my-2">
+                <form class="d-flex justify-content-center">
+                    <label for="carslot">Parcheggio</label>
+                    <input type="checkbox" name="carslot" id="parkslot">
+                    <label for="rating">Filtra i risultati per recentione</label>
+                    <input type="number" name="rating" id="rate" min="1" max="5">
+                    <input type="submit" value="Filtra i risultati" id="filter">
+                </form>
+            </div>
             <div class="row justify-content-space-around">
                 <?php
                 foreach ($hotels as $hotel) {
@@ -134,12 +157,18 @@
                     $descr = $hotel["description"];
                     $vote = $hotel["vote"];
                     $distance = $hotel["distance_to_center"];
-                    $parking = $hotel["parking"] ? '<i class="fa-solid fa-car"></i>' : '<i class="fa-solid fa-ban"></i>';
+                    $parking = $hotel["parking"];
                     $vote = $hotel["vote"];
+
+                    $parking_choice = $_GET["carslot"];
+                    $ratin = $_GET["rating"];
+
+                    $parkslot = $parking ? '<i class="fa-solid fa-car"></i>' : '<i class="fa-solid fa-ban"></i>';
+
 
                     echo "<div class='card col-2 m-3 py-3'>"
                         . "<h3>" . $name . "</h3>" . "<p>" . $descr . "</p>"
-                        . "<div> Parcheggio: " . $parking . "</div>"
+                        . "<div> Parcheggio: " . $parkslot . "</div>"
                         . "<div class='distance'> Distanza dal centro: " . $distance . "km</div>"
                         . "<div class='rating'> Voto degli utenti: " . "<span class='review'>" . $vote . "/5 </span>" . "</div>"
                         . "</div>";
