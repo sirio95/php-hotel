@@ -57,6 +57,30 @@
 </head>
 
 <body>
+    <?php
+    echo "<h1> Cerca l'hotel migliore </h1>";
+    foreach ($hotels as $hotel) {
+        $name = $hotel["name"];
+        $descr = $hotel["description"];
+        $vote = $hotel["vote"];
+        $distance = $hotel["distance_to_center"];
+
+        if ($hotel["parking"] == true) {
+            $parking = '<i class="fa-solid fa-car"></i>';
+        } else {
+            $parking = '<i class="fa-solid fa-ban"></i>';
+        }
+        ;
+
+        echo "<h3>" . $name . "</h3>" . "<p>" . $descr . "</p>"
+            . "<div> Parcheggio: " . $parking . "</div>"
+            . "<div> Distanza dal centro: " . $distance . "km</div>";
+    }
+
+
+    ?>
+
+
 
 
 
