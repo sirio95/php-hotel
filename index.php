@@ -16,6 +16,60 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Gill Sans';
+            font-size: 16px;
+        }
+
+        header {
+            height: 200px;
+            background-image: url(https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/autumn-2872-3f580ede8dbcf2a09f3cdb0310b8c7c8@1x.jpg);
+            background-size: contain;
+            box-shadow: 5px 1px 10px #000;
+        }
+
+        .title {
+            text-transform: capitalize;
+            line-height: 150px;
+            font-weight: bolder;
+            color: lightyellow;
+        }
+
+        main {
+            background-color: bisque;
+            height: 100vh;
+        }
+
+        .card {
+            height: 200px;
+            background-color: ivory;
+        }
+
+        .card h3 {
+            color: #DC1E1E;
+        }
+
+        .card p {
+            font-style: italic;
+        }
+
+        .fa-car {
+            color: #29d40f;
+        }
+
+        .fa-ban {
+            color: red;
+        }
+
+        .distance {
+            margin-top: 10px;
+        }
+
+        .card h3:hover {
+            color: coral;
+            transform: scale(1.1);
+        }
     </style>
     <?php
     $hotels = [
@@ -62,13 +116,12 @@
 
 <body>
     <header>
-        <h1>
-            <?php
-            echo "<h1 class='text-center'> Cerca l'hotel migliore </h1>";
-            ?>
-        </h1>
+        <?php
+        echo "<h1 class='title text-center h-100'> i migliori hotel nelle tue zone </h1>";
+        ?>
     </header>
     <main>
+
         <section class="container">
             <div class="row justify-content-space-around">
                 <?php
@@ -79,10 +132,10 @@
                     $distance = $hotel["distance_to_center"];
                     $parking = $hotel["parking"] ? '<i class="fa-solid fa-car"></i>' : '<i class="fa-solid fa-ban"></i>';
 
-                    echo "<div class='card col-2 m-3'>"
-                        . "<h4>" . $name . "</h4>" . "<p>" . $descr . "</p>"
+                    echo "<div class='card col-2 m-3 py-3'>"
+                        . "<h3>" . $name . "</h3>" . "<p>" . $descr . "</p>"
                         . "<div> Parcheggio: " . $parking . "</div>"
-                        . "<div> Distanza dal centro: " . $distance . "km</div>"
+                        . "<div class='distance'> Distanza dal centro: " . $distance . "km</div>"
                         . "</div>";
                 }
                 ?>
