@@ -11,7 +11,11 @@
     <title>PHP Hotel</title>
 
     <style>
-
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
     </style>
     <?php
     $hotels = [
@@ -57,28 +61,34 @@
 </head>
 
 <body>
-    <?php
-    echo "<h1> Cerca l'hotel migliore </h1>";
-    foreach ($hotels as $hotel) {
-        $name = $hotel["name"];
-        $descr = $hotel["description"];
-        $vote = $hotel["vote"];
-        $distance = $hotel["distance_to_center"];
+    <header>
+        <h1>
+            <?php
+            echo "<h1 class='text-center'> Cerca l'hotel migliore </h1>";
+            ?>
+        </h1>
+    </header>
+    <main>
+        <section class="container">
+            <div class="row justify-content-space-around">
+                <?php
+                foreach ($hotels as $hotel) {
+                    $name = $hotel["name"];
+                    $descr = $hotel["description"];
+                    $vote = $hotel["vote"];
+                    $distance = $hotel["distance_to_center"];
+                    $parking = $hotel["parking"] ? '<i class="fa-solid fa-car"></i>' : '<i class="fa-solid fa-ban"></i>';
 
-        if ($hotel["parking"] == true) {
-            $parking = '<i class="fa-solid fa-car"></i>';
-        } else {
-            $parking = '<i class="fa-solid fa-ban"></i>';
-        }
-        ;
-
-        echo "<h3>" . $name . "</h3>" . "<p>" . $descr . "</p>"
-            . "<div> Parcheggio: " . $parking . "</div>"
-            . "<div> Distanza dal centro: " . $distance . "km</div>";
-    }
-
-
-    ?>
+                    echo "<div class='card col-2 m-3'>"
+                        . "<h4>" . $name . "</h4>" . "<p>" . $descr . "</p>"
+                        . "<div> Parcheggio: " . $parking . "</div>"
+                        . "<div> Distanza dal centro: " . $distance . "km</div>"
+                        . "</div>";
+                }
+                ?>
+            </div>
+        </section>
+    </main>
 
 
 
